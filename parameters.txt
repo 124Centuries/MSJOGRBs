@@ -1,0 +1,15 @@
+time: 0.001, 3.5, 0.001
+energy_gen: 1, 4000, 0.5
+energy_target:10,1000
+time_target:0.001,2.5
+energy_list_WXT: [1 2 4 8]
+energy_list_plot_WXT: 1, 10, 0.1
+energy_list_GRM: [  10   50  100  500 4000]
+energy_list_plot_GRM: 10, 4000, 5
+energy_list_GECAM: [  10   50  100  500 4000]
+energy_list_plot_GECAM: 10, 4000, 5
+duration: 2.5
+fluence_target: 0.00024
+time_bin: 0.01
+tau1: 0.1
+wxt_factor: 10

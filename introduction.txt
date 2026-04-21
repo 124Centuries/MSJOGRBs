@@ -1,0 +1,36 @@
+"Simulation and Data Analysis Methods for Multi-Satellite Joint Observation of Gamma-Ray Bursts"
+abbreviation --> MSJOGRBs
+
+'parameters.txt' -->> give settings here
+
+MODULE 1 -->> generate threotical incident photon spectrum
+MODULE 2 -->> get response matrix from different satellite
+	      convolute incident spectrum and response matrix
+MODULE 3 -->> data analysis toolkit (simple version)
+
+'read_param.py' -->> help you to get all the parameters you need
+		     be careful when you attain the 'energy_list' data, such as 'energy_list_GRM', 
+		     ########################################
+		     cleaned = energy_list_GRM.strip('[]').split()
+		     energy_list_GRM = [int(x) for x in cleaned]
+		     #########################################3
+		     use such a process to make sure the formats are compatible.
+		     
+'analyze_lc.py' -->> get the light curve shape's parameters basically, 
+	             we don't suggest use this on these light curve with adding noise
+	             smooth light curve and fitting light curve can be suitable for this function
+'all_filter.py'  -->> include three filters, 1. moving average smooth ; 2. sg filter ; 3. wavelet filter
+'generate_lc.py'  -->> generate the theoretical incident photon spectrum
+	               input profile and spectrum, it can give you a results
+	               If you want analyze several satellite and one or two of them works in a low energy range,
+	               you may need 'generate_fine_lc' function to attain the incident spectrum.
+'generate_matrix.py'  -->> we give two methods to attain the response matrix, 'read_rsp' is for GRM and GECAM
+			   GECAM need a cut, the final GECAM_matrix is GECAM_matrix[:448,:]
+			   GRM is GRM_matrix[:-3,:]
+			   'read_rsp_WXT' is for WXT and other response matrix, if the file including 'arf.fits', 
+			   'bkgspec.fits', 'rmf.fits'
+'all_rsp.py'  -->> convolute the theoretical incident photon spectrum and response matrix
+'fit_lc.py'  -->> give a simple example of fitting fred light curve shape and Band spectrum
+		  based on the example, you can put your own light curve shape and energy spectrum into this script to fit.
+'before_fic.py'  -->> because the data we finally get is 'counts/s', the Band is 'photons/cm^2/s/keV', we simply think counts equal to photons
+		      '/keV' can let the data divided by the width of deposited channel, 'cm^2' need some trick, and you can get the idea in 'before_fit.py' 
